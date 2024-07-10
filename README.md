@@ -56,21 +56,7 @@ Update the `.env` file with your OpenAI API key:
 GRAPHRAG_API_KEY=<Your OpenAI API Key>
 ```
 
-### Step 6: Modify the GraphRAG Settings
-
-Find the Conda environment base directory:
-
-```bash
-conda info --base
-```
-
-Navigate to the environment's site-packages directory:
-
-```bash
-cd <conda_base_dir>/envs/kgrag_ollama/lib/python3.11/site-packages/graphrag/llm/openai/
-```
-
-### Step 7: Update the Settings
+### Step 6: Update the Settings
 
 Modify the `settings.yaml` file in `./ragtest`:
 
