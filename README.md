@@ -1,7 +1,7 @@
-
 # GraphRAG with Ollama - Install Local Models for RAG
 
 ## Introduction
+
 GraphRAG (Knowledge Graph Retrieval-Augmented Generation) is a powerful tool for enhancing text generation by retrieving relevant information from a knowledge graph. This tutorial will guide you through setting up GraphRAG with Ollama models for RAG (Retrieval-Augmented Generation). By following this step-by-step guide, you'll learn how to configure your environment, download necessary models, and prepare your workspace.
 
 ## Installation and Setup
@@ -44,6 +44,7 @@ python -m graphrag.index --init --root ./ragtest
 ```
 
 This command creates two files in the `./ragtest` directory:
+
 - `.env`: Contains environment variables required to run the GraphRAG pipeline. Replace `<API_KEY>` with your OpenAI API key.
 - `settings.yaml`: Contains the settings for the pipeline. You can modify this file to change the settings as needed.
 
@@ -68,8 +69,6 @@ Navigate to the environment's site-packages directory:
 ```bash
 cd <conda_base_dir>/envs/kgrag_ollama/lib/python3.11/site-packages/graphrag/llm/openai/
 ```
-
-Override the `openai_embeddings_llm.py` file with the one from this repository to allow the use of Ollama models.
 
 ### Step 7: Update the Settings
 

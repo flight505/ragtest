@@ -3,21 +3,19 @@
 
 """The EmbeddingsLLM class."""
 
+from typing_extensions import Unpack
 from graphrag.llm.base import BaseLLM
 from graphrag.llm.types import (
     EmbeddingInput,
     EmbeddingOutput,
     LLMInput,
 )
-from typing_extensions import Unpack
-
 from .openai_configuration import OpenAIConfiguration
 from .types import OpenAIClientTypes
+import ollama
 
 
 class OpenAIEmbeddingsLLM(BaseLLM[EmbeddingInput, EmbeddingOutput]):
-    """A text-embedding generator LLM."""
-
     _client: OpenAIClientTypes
     _configuration: OpenAIConfiguration
 
@@ -29,12 +27,11 @@ class OpenAIEmbeddingsLLM(BaseLLM[EmbeddingInput, EmbeddingOutput]):
         self, input: EmbeddingInput, **kwargs: Unpack[LLMInput]
     ) -> EmbeddingOutput | None:
         args = {
-            "model": self._configuration.model,  # Use the model from configuration
+            "model": self._configuration.model,
             **(kwargs.get("model_parameters") or {}),
         }
         embedding_list = []
         for inp in input:
-            # Use the _client instance variable and pass args
-            embedding = self._client.embeddings(model=args["model"], prompt=inp)
+            embedding = ollama.embeddings(model="nomic-embed-text", prompt=inp)
             embedding_list.append(embedding["embedding"])
         return embedding_list
